@@ -1,0 +1,88 @@
+[
+    {
+        "model": "user.CustomUser",
+        "pk": 1,
+        "fields": {
+            "username": "admin",
+            "password": "pbkdf2_sha256$870000$H0ajZ2h0CCo977Ttbwitn2$Z8rJjLYatRvHSgXiONoborSGEW5V+rdLWlYovJx+0RA=",
+            "is_superuser": true,
+            "is_staff": true,
+            "is_active": true,
+            "first_name": "Admin",
+            "last_name": "User",
+            "email": "admin@example.com"
+        }
+    },
+    {
+        "model": "user.CustomUser",
+        "pk": 2,
+        "fields": {
+            "username": "johndoe",
+            "password": "pbkdf2_sha256$870000$UlNqwPdwo3HyNjK9HfQKwv$90l+qR355BAR0qXc4uZb34TSy9awIkXc2+r3SiOUed4=",
+            "is_superuser": false,
+            "is_staff": false,
+            "is_active": true,
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "johndoe@example.com"
+        }
+    },
+    {
+        "model": "events.eventtype",
+        "pk": 1,
+        "fields": {
+            "name": "Conference"
+        }
+    },
+    {
+        "model": "events.eventtype",
+        "pk": 2,
+        "fields": {
+            "name": "Workshop"
+        }
+    },
+    {
+        "model": "events.eventtype",
+        "pk": 3,
+        "fields": {
+            "name": "Seminar"
+        }
+    },
+    {
+        "model": "events.event",
+        "pk": 1,
+        "fields": {
+            "title": "DjangoCon 2024",
+            "event_type": 1,
+            "description": "A conference for Django enthusiasts.",
+            "date": "2024-10-15T09:00:00Z",
+            "location": "San Francisco, CA",
+            "organizer": 1
+        }
+    },
+    {
+        "model": "events.event",
+        "pk": 2,
+        "fields": {
+            "title": "Advanced Python Workshop",
+            "event_type": 2,
+            "description": "A workshop for advanced Python developers.",
+            "date": "2024-11-10T10:00:00Z",
+            "location": "New York, NY",
+            "organizer": 2
+        }
+    },
+    {
+        "model": "events.event",
+        "pk": 3,
+        "fields": {
+            "title": "Some seminar",
+            "event_type": 3,
+            "description": "A seminar for advanced Python developers.",
+            "date": "2024-11-10T10:00:00Z",
+            "location": "Kyiv, Ukraine",
+            "organizer": 1
+        }
+    }
+
+]

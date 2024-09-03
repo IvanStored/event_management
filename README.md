@@ -14,6 +14,12 @@ cd event_management
 *create .env file (.env.sample for example)*
 docker compose up
 ```
+## Admin creds:
+admin:admin_pasword
+
+## Non-admin creds:
+johndoe:not_admin
+
 ## API docs endpoint:
 - api/schema/swagger-ui/
 
