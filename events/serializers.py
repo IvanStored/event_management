@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Event, EventRegistration
+from .models import Event, EventRegistration, EventType
 
 
 class EventRegistrationSerializer(serializers.ModelSerializer):
@@ -18,7 +18,9 @@ class EventSerializer(serializers.ModelSerializer):
     participants = EventRegistrationSerializer(
         many=True, read_only=True, source="registrations"
     )
-
+    event_type = serializers.SlugRelatedField(
+        queryset=EventType.objects.all(), slug_field="name"
+    )
     class Meta:
         model = Event
         fields = "__all__"

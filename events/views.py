@@ -4,7 +4,7 @@ from rest_framework import viewsets, permissions, status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from .models import Event, EventRegistration
+from .models import Event, EventRegistration, EventType
 from .serializers import EventSerializer, EventRegistrationSerializer
 from .permissions import IsOrganizerOrReadOnly
 
@@ -20,7 +20,7 @@ class EventViewSet(viewsets.ModelViewSet):
         location = self.request.query_params.get("location")
         title = self.request.query_params.get("title")
         description = self.request.query_params.get("description")
-
+        event_type = self.request.query_params.get("event_type")
         queryset = self.queryset
 
         if location:
@@ -29,11 +29,13 @@ class EventViewSet(viewsets.ModelViewSet):
             queryset = queryset.filter(title__icontains=title)
         if description:
             queryset = queryset.filter(description__icontains=description)
-
+        if event_type:
+            queryset = queryset.filter(event_type__name__icontains=event_type)
         return queryset.all()
 
     def perform_create(self, serializer):
-        serializer.save(organizer=self.request.user)
+        event_type, created = EventType.objects.get_or_create(name=self.request.data.get("event_type"))
+        serializer.save(organizer=self.request.user, event_type=event_type)
 
     def get_serializer_class(self):
         if self.action == "register_to_event":
@@ -76,6 +78,11 @@ class EventViewSet(viewsets.ModelViewSet):
                 "description",
                 type=OpenApiTypes.STR,
                 description="Filter by description (ex. ?description=medicine)",
+            ),
+            OpenApiParameter(
+                "event_type",
+                type=OpenApiTypes.STR,
+                description="Filter by event type (ex. ?event_type=Conference)",
             ),
         ]
     )
