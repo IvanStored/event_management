@@ -31,3 +31,6 @@ johndoe:not_admin
 - Registration for event
 - Filters for events
 - sending email notifications to users upon event registration.
+
+## PS:
+Change email in initial_data.json to yours to test email notification
