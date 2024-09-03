@@ -16,9 +16,9 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
+from django.urls import path, include, reverse_lazy
+from django.views.generic import RedirectView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -29,5 +29,10 @@ urlpatterns = [
         "api/schema/swagger-ui/",
         SpectacularSwaggerView.as_view(url_name="schema"),
         name="swagger-ui",
+    ),
+    path(
+        "",
+        RedirectView.as_view(url=reverse_lazy("swagger-ui")),
+        name="redirect-to-swagger",
     ),
 ]
